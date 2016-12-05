@@ -15,15 +15,19 @@ var printBoard = function() {
   }
 }
 
-var checkBoardFile = function() {
+// return current board, creating board file if needed
+var readBoardFile = function() {
   var boardFilePath = path.join(__dirname, 'board.json')
   // if a file does not already exist
   if(!fs.existsSync(boardFilePath)){
     // create file
     fs.openSync(boardFilePath, 'w');
     console.log('new game started');
+    return board;
+  } else {
+    return fs.readFileSync(boardFilePath);
   }
 }
 
 program.command('tictactoe')
-  .action(checkBoardFile());
+  .action(readBoardFile());

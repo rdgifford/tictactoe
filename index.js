@@ -29,5 +29,17 @@ var readBoardFile = function() {
   }
 }
 
+var writeBoardFile = function() {
+
+}
+
 program.command('tictactoe')
-  .action(readBoardFile());
+  .action();
+
+process.stdin.setEncoding('utf8');
+process.stdin.on('readable', () => {
+  var chunk = process.stdin.read();
+  if(chunk) {
+    console.log('typing', chunk);
+  }
+})
